@@ -1,0 +1,87 @@
+<template>
+  <style>
+    #s2-climax {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      overflow: hidden;
+    }
+    .glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(0, 200, 255, 0.4) 0%, transparent 70%);
+      border-radius: 50%;
+      opacity: 0;
+    }
+    .anchor-word {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 160px;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 0 60px rgba(0, 200, 255, 0.8), 0 0 100px rgba(0, 200, 255, 0.4);
+      opacity: 0;
+    }
+    .term {
+      position: absolute;
+      top: calc(50% + 120px);
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 32px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.7);
+      letter-spacing: 4px;
+      opacity: 0;
+    }
+    .ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 200px;
+      height: 200px;
+      border: 3px solid rgba(0, 200, 255, 0.6);
+      border-radius: 50%;
+      opacity: 0;
+    }
+  </style>
+
+  <div id="s2-climax" data-composition-id="s2-climax">
+    <div class="glow"></div>
+    <div class="ring"></div>
+    <div class="anchor-word">累</div>
+    <div class="term">睡眠惯性 · Sleep Inertia</div>
+  </div>
+
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+
+    // 16.9s 完全静默后，17.0s 重拍砸下
+    // 光晕炸开
+    tl.to(".glow", { opacity: 1, duration: 0.1, ease: "power2.out" }, 0.6);
+    // 锚词从中心弹出
+    tl.fromTo(".anchor-word",
+      { opacity: 0, scale: 0.3 },
+      { opacity: 1, scale: 1, duration: 0.2, ease: "back.out(2)" }, 0.6);
+    // 光环向外扩散
+    tl.fromTo(".ring",
+      { opacity: 1, scale: 0.5 },
+      { opacity: 0, scale: 4, duration: 1, ease: "power2.out" }, 0.6);
+
+    // 17.6s 术语浮出
+    tl.to(".term", { opacity: 1, duration: 0.5, ease: "power2.out" }, 1.2);
+
+    // 呼吸感：锚词轻微脉动
+    tl.to(".anchor-word", { scale: 1.03, duration: 0.8, yoyo: true, repeat: 1, ease: "sine.inOut" }, 2);
+
+    window.__timelines["s2-climax"] = tl;
+  </script>
+</template>

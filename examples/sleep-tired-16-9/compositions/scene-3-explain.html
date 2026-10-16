@@ -1,0 +1,148 @@
+<template>
+  <style>
+    #s3-explain {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, #050a14 0%, #0a1628 100%);
+      overflow: hidden;
+    }
+    .kicker {
+      position: absolute;
+      left: 80px;
+      top: 64px;
+      color: #4dd8ff;
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: 2px;
+    }
+    .point {
+      position: absolute;
+      left: 80px;
+      width: 500px;
+      opacity: 0;
+    }
+    .point-num {
+      display: inline-block;
+      width: 48px;
+      height: 48px;
+      line-height: 48px;
+      text-align: center;
+      background: #00c8ff;
+      color: #000;
+      font-size: 24px;
+      font-weight: 700;
+      border-radius: 50%;
+      margin-right: 16px;
+    }
+    .point-title {
+      display: inline;
+      font-size: 36px;
+      font-weight: 600;
+      color: #e8f4ff;
+      vertical-align: middle;
+    }
+    .point-desc {
+      margin-top: 16px;
+      margin-left: 64px;
+      font-size: 28px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.5;
+    }
+    .point-1 { top: 180px; }
+    .point-2 { top: 400px; }
+    .point-3 { top: 620px; }
+
+    .viz {
+      position: absolute;
+      right: 150px;
+      width: 300px;
+      height: 200px;
+      opacity: 0;
+    }
+    .viz-1 { top: 160px; }
+    .viz-2 { top: 380px; }
+    .viz-3 { top: 600px; }
+
+    // 波形图（睡眠周期）
+    .wave-bar {
+      position: absolute;
+      bottom: 0;
+      width: 20px;
+      background: #00c8ff;
+      border-radius: 3px 3px 0 0;
+    }
+  </style>
+
+  <div id="s3-explain" data-composition-id="s3-explain">
+    <div class="kicker">WHY · 三个原因</div>
+
+    <div class="point point-1">
+      <span class="point-num">1</span><span class="point-title">睡太久</span>
+      <div class="point-desc">睡眠周期被强行打断，大脑还卡在深睡期里</div>
+    </div>
+    <div class="viz viz-1">
+      <div class="wave-bar" style="left:20px; height:60px;"></div>
+      <div class="wave-bar" style="left:55px; height:120px;"></div>
+      <div class="wave-bar" style="left:90px; height:80px;"></div>
+      <div class="wave-bar" style="left:125px; height:150px;"></div>
+      <div class="wave-bar" style="left:160px; height:100px;"></div>
+      <div class="wave-bar" style="left:195px; height:160px;"></div>
+      <div class="wave-bar" style="left:230px; height:90px; background:#ff4d6d;"></div>
+    </div>
+
+    <div class="point point-2">
+      <span class="point-num">2</span><span class="point-title">睡太晚</span>
+      <div class="point-desc">生物钟紊乱，皮质醇分泌的时间完全错位</div>
+    </div>
+    <div class="viz viz-2">
+      <div class="wave-bar" style="left:20px; height:100px;"></div>
+      <div class="wave-bar" style="left:55px; height:70px;"></div>
+      <div class="wave-bar" style="left:90px; height:50px;"></div>
+      <div class="wave-bar" style="left:125px; height:40px;"></div>
+      <div class="wave-bar" style="left:160px; height:60px;"></div>
+      <div class="wave-bar" style="left:195px; height:120px; background:#ff4d6d;"></div>
+      <div class="wave-bar" style="left:230px; height:150px; background:#ff4d6d;"></div>
+    </div>
+
+    <div class="point point-3">
+      <span class="point-num">3</span><span class="point-title">睡太乱</span>
+      <div class="point-desc">作息没有规律，身体根本不知道什么时候该醒</div>
+    </div>
+    <div class="viz viz-3">
+      <div class="wave-bar" style="left:20px; height:80px;"></div>
+      <div class="wave-bar" style="left:55px; height:140px;"></div>
+      <div class="wave-bar" style="left:90px; height:50px;"></div>
+      <div class="wave-bar" style="left:125px; height:110px;"></div>
+      <div class="wave-bar" style="left:160px; height:70px;"></div>
+      <div class="wave-bar" style="left:195px; height:130px;"></div>
+      <div class="wave-bar" style="left:230px; height:60px;"></div>
+    </div>
+  </div>
+
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+
+    // 第一个点
+    tl.fromTo(".point-1",
+      { opacity: 0, x: -30 },
+      { opacity: 1, x: 0, duration: 0.6, ease: "power2.out" }, 0.3);
+    tl.to(".viz-1", { opacity: 1, duration: 0.6, ease: "power2.out" }, 0.5);
+
+    // 第二个点
+    tl.fromTo(".point-2",
+      { opacity: 0, x: -30 },
+      { opacity: 1, x: 0, duration: 0.6, ease: "power2.out" }, 4.3);
+    tl.to(".viz-2", { opacity: 1, duration: 0.6, ease: "power2.out" }, 4.5);
+
+    // 第三个点
+    tl.fromTo(".point-3",
+      { opacity: 0, x: -30 },
+      { opacity: 1, x: 0, duration: 0.6, ease: "power2.out" }, 8.3);
+    tl.to(".viz-3", { opacity: 1, duration: 0.6, ease: "power2.out" }, 8.5);
+
+    window.__timelines["s3-explain"] = tl;
+  </script>
+</template>

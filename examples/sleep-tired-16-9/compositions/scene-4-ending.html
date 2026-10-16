@@ -1,0 +1,113 @@
+<template>
+  <style>
+    #s4-ending {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, #0a1628 0%, #1a2a4a 100%);
+      overflow: hidden;
+    }
+    .sunlight {
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255, 200, 100, 0.3) 0%, transparent 70%);
+      border-radius: 50%;
+      opacity: 0;
+    }
+    .room {
+      position: absolute;
+      left: 50%;
+      top: 55%;
+      transform: translate(-50%, -50%);
+      width: 500px;
+      height: 350px;
+      opacity: 0;
+    }
+    .bed {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 350px;
+      height: 100px;
+      background: #2a4a6a;
+      border-radius: 8px 8px 0 0;
+    }
+    .pillow {
+      position: absolute;
+      bottom: 85px;
+      left: 50%;
+      transform: translateX(-60px);
+      width: 90px;
+      height: 35px;
+      background: #3a6a9a;
+      border-radius: 18px;
+    }
+    .subtitle {
+      position: absolute;
+      left: 50%;
+      bottom: 180px;
+      transform: translateX(-50%);
+      color: #fff;
+      font-size: 40px;
+      font-weight: 500;
+      text-align: center;
+      line-height: 1.6;
+      opacity: 0;
+    }
+    .subtitle .highlight {
+      color: #ffd700;
+      font-weight: 600;
+    }
+    .tagline {
+      position: absolute;
+      left: 50%;
+      bottom: 80px;
+      transform: translateX(-50%);
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 36px;
+      font-weight: 700;
+      text-align: center;
+      opacity: 0;
+    }
+    .tagline .gold {
+      color: #ffd700;
+    }
+  </style>
+
+  <div id="s4-ending" data-composition-id="s4-ending">
+    <div class="sunlight" data-layout-allow-overflow></div>
+    <div class="room">
+      <div class="bed"></div>
+      <div class="pillow"></div>
+    </div>
+    <div class="subtitle">
+      原来，<span class="highlight">累</span>不是睡不够<br>
+      而是睡错了时间
+    </div>
+    <div class="tagline">
+      规律的作息，才是最好的<span class="gold">闹钟</span>
+    </div>
+  </div>
+
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+
+    // 阳光缓缓亮起
+    tl.to(".sunlight", { opacity: 1, duration: 1.5, ease: "power2.out" }, 0.2);
+    // 卧室淡入
+    tl.to(".room", { opacity: 1, duration: 1, ease: "power2.out" }, 0.5);
+
+    // 字幕淡入（锚词重新定义）
+    tl.to(".subtitle", { opacity: 1, duration: 0.8, ease: "power2.out" }, 1.5);
+
+    // 金句最后出现
+    tl.to(".tagline", { opacity: 1, duration: 0.8, ease: "power2.out" }, 4);
+
+    window.__timelines["s4-ending"] = tl;
+  </script>
+</template>

@@ -1,0 +1,168 @@
+<template>
+  <style>
+    #s1-hook {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, #050a14 0%, #0a1628 100%);
+      overflow: hidden;
+    }
+    .bg-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0, 200, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 200, 255, 0.05) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+    .room {
+      position: absolute;
+      left: 50%;
+      top: 55%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 400px;
+    }
+    .bed {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 400px;
+      height: 120px;
+      background: #1a2a4a;
+      border-radius: 8px 8px 0 0;
+    }
+    .pillow {
+      position: absolute;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-70px);
+      width: 100px;
+      height: 40px;
+      background: #2a4a6a;
+      border-radius: 20px;
+    }
+    .person {
+      position: absolute;
+      bottom: 90px;
+      left: 50%;
+      transform: translateX(-20px);
+      width: 160px;
+      height: 50px;
+      background: #0d1f3c;
+      border-radius: 30px;
+    }
+    .clock {
+      position: absolute;
+      top: 80px;
+      right: 120px;
+      width: 80px;
+      height: 80px;
+      border: 3px solid #00c8ff;
+      border-radius: 50%;
+      opacity: 0.8;
+    }
+    .clock-hand {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 3px;
+      height: 30px;
+      background: #00c8ff;
+      transform-origin: bottom center;
+    }
+    .subtitle {
+      position: absolute;
+      left: 50%;
+      bottom: 120px;
+      transform: translateX(-50%);
+      color: #ffffff;
+      font-size: 42px;
+      font-weight: 500;
+      text-align: center;
+      line-height: 1.5;
+      text-shadow: 0 0 20px rgba(0, 200, 255, 0.3);
+      opacity: 0;
+    }
+    .kicker {
+      position: absolute;
+      left: 80px;
+      top: 64px;
+      color: #4dd8ff;
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: 2px;
+    }
+    .yawn {
+      position: absolute;
+      top: 150px;
+      left: 150px;
+      width: 60px;
+      height: 60px;
+      border: 2px solid rgba(0, 200, 255, 0.4);
+      border-radius: 50%;
+      opacity: 0;
+    }
+    .eye-rub {
+      position: absolute;
+      bottom: 200px;
+      right: 150px;
+      width: 50px;
+      height: 50px;
+      border: 2px solid rgba(0, 200, 255, 0.4);
+      border-radius: 50%;
+      opacity: 0;
+    }
+    .fade-overlay {
+      position: absolute;
+      inset: 0;
+      background: #050a14;
+      opacity: 0;
+      pointer-events: none;
+    }
+  </style>
+
+  <div id="s1-hook" data-composition-id="s1-hook">
+    <div class="bg-grid"></div>
+    <div class="kicker">SLEEP INERTIA · 01</div>
+    <div class="room">
+      <div class="bed"></div>
+      <div class="pillow"></div>
+      <div class="person"></div>
+    </div>
+    <div class="clock">
+      <div class="clock-hand"></div>
+    </div>
+    <div class="yawn"></div>
+    <div class="eye-rub"></div>
+    <div class="subtitle">你已经睡了整整 10 个小时<br>为什么还是睁不开眼？</div>
+    <div class="fade-overlay"></div>
+  </div>
+
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+
+    // 卧室淡入
+    tl.from(".room", { opacity: 0, y: 30, duration: 1, ease: "power2.out" }, 0.3);
+    tl.from(".clock", { opacity: 0, scale: 0.5, duration: 0.6, ease: "back.out(1.5)" }, 0.8);
+    // 时钟指针快速转动（表现时间过了很久）
+    tl.to(".clock-hand", { rotation: 3600, duration: 8, ease: "none" }, 1);
+
+    // 两个小点缀依次出现：打哈欠、揉眼睛
+    tl.fromTo(".yawn", { opacity: 0, scale: 0.5 }, { opacity: 0.8, scale: 1, duration: 0.5, ease: "power2.out" }, 3);
+    tl.to(".yawn", { opacity: 0, scale: 1.5, duration: 0.4, ease: "power2.in" }, 4.5);
+
+    tl.fromTo(".eye-rub", { opacity: 0, scale: 0.5 }, { opacity: 0.8, scale: 1, duration: 0.5, ease: "power2.out" }, 6);
+    tl.to(".eye-rub", { opacity: 0, scale: 1.5, duration: 0.4, ease: "power2.in" }, 7.5);
+
+    // 字幕淡入
+    tl.to(".subtitle", { opacity: 1, duration: 0.8, ease: "power2.out" }, 3.5);
+
+    // 16.4s 开始收暗（换气）
+    tl.to(".fade-overlay", { opacity: 1, duration: 0.5, ease: "power2.in" }, 15.9);
+
+    window.__timelines["s1-hook"] = tl;
+  </script>
+</template>
