@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          color: #f4f6f9;
+          font-family: system-ui, sans-serif;
+        }
+        .wrap {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0 96px;
+          box-sizing: border-box;
+        }
+        .left {
+          flex: 0 0 46%;
+        }
+        .right {
+          flex: 0 0 40%;
+          position: relative;
+          height: 60%;
+        }
+        .badge {
+          display: inline-block;
+          padding: 8px 22px;
+          border: 1px solid rgba(99, 164, 255, 0.5);
+          border-radius: 999px;
+          color: #63a4ff;
+          font-size: 20px;
+          letter-spacing: 3px;
+          margin-bottom: 26px;
+        }
+        h1 {
+          margin: 0;
+          font-size: 64px;
+          line-height: 1.18;
+          font-weight: 800;
+          letter-spacing: 2px;
+        }
+        .line2 {
+          color: #63a4ff;
+          margin-top: 10px;
+        }
+        p.lead {
+          margin: 24px 0 0;
+          font-size: 30px;
+          line-height: 1.5;
+          color: #aeb7c2;
+        }
+        .dots {
+          position: absolute;
+          inset: 0;
+        }
+        .dot {
+          position: absolute;
+          width: 16px;
+          height: 16px;
+          border-radius: 50%;
+          background: #63a4ff;
+          left: 50%;
+          top: 50%;
+          margin: -8px 0 0 -8px;
+        }
+        .dot.alt {
+          background: rgba(174, 183, 194, 0.7);
+        }
+      </style>
+
+      <div id="root" data-composition-id="s3-idea2" data-width="1920" data-height="1080">
+        <div class="wrap">
+          <div class="left">
+            <div class="badge" id="s3-badge">观点 02</div>
+            <h1 id="s3-l1">混乱不是无序</h1>
+            <h1 class="line2" id="s3-l2">而是可能性增加</h1>
+            <p class="lead" id="s3-lead">系统越乱，可选择的路径越多</p>
+          </div>
+          <div class="right">
+            <div class="dots" id="s3-dots">
+              <div class="dot"></div>
+              <div class="dot alt"></div>
+              <div class="dot"></div>
+              <div class="dot alt"></div>
+              <div class="dot"></div>
+              <div class="dot alt"></div>
+              <div class="dot"></div>
+              <div class="dot alt"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        tl.fromTo("#s3-badge", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 0.5);
+        tl.fromTo("#s3-l1", { y: 32, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 0.8);
+        tl.fromTo("#s3-l2", { y: 32, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 1.1);
+        tl.fromTo("#s3-lead", { y: 22, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 1.4);
+        tl.fromTo("#s3-dots", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 1.6);
+        // 散点扩散：确定性目标偏移，不用 Math.random
+        const spread = [
+          [-150, -90], [-40, -150], [150, -70], [110, 130],
+          [-170, 80], [-60, 160], [170, 40], [-20, -160]
+        ];
+        gsap.utils.toArray("#s3-dots .dot").forEach(function (dot, i) {
+          tl.fromTo(dot, { x: 0, y: 0 }, { x: spread[i][0], y: spread[i][1], duration: 1.6, ease: "power2.out" }, 1.9 + i * 0.06);
+        });
+        tl.to("#s3 .wrap", { opacity: 0, duration: 0.6, ease: "power2.in" }, 9.2);
+        window.__timelines["s3-idea2"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

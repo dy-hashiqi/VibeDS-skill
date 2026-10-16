@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          color: #f4f6f9;
+          font-family: system-ui, sans-serif;
+        }
+        .wrap {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+        }
+        .kicker {
+          font-size: 22px;
+          letter-spacing: 8px;
+          color: #63a4ff;
+          margin: 0 0 26px;
+          font-weight: 600;
+        }
+        h1 {
+          margin: 0;
+          font-size: 72px;
+          line-height: 1.18;
+          font-weight: 800;
+          letter-spacing: 2px;
+        }
+        .divider {
+          width: 72px;
+          height: 4px;
+          border-radius: 2px;
+          background: #63a4ff;
+          margin: 30px auto 0;
+        }
+        p.lead {
+          margin: 24px 0 0;
+          font-size: 30px;
+          line-height: 1.5;
+          color: #aeb7c2;
+        }
+      </style>
+
+      <div id="root" data-composition-id="s5-closing" data-width="1920" data-height="1080">
+        <div class="wrap">
+          <div class="kicker" id="s5-kicker">结语</div>
+          <h1 id="s5-title">对抗熵增</h1>
+          <div class="divider" id="s5-divider"></div>
+          <p class="lead" id="s5-lead">是每个人一生的长期修行</p>
+        </div>
+      </div>
+
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        tl.fromTo("#s5-kicker", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 0.5);
+        tl.fromTo("#s5-title", { y: 34, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }, 1.0);
+        tl.fromTo("#s5-divider", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power2.out" }, 1.5);
+        tl.fromTo("#s5-lead", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 1.8);
+        window.__timelines["s5-closing"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

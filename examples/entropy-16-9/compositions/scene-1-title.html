@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        /* 子组合根：必须用 #root 选择器（lint: subcomposition_root_styled_by_class） */
+        #root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          color: #f4f6f9;
+          font-family: system-ui, sans-serif;
+        }
+        .wrap {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+        }
+        .kicker {
+          font-size: 22px;
+          letter-spacing: 8px;
+          color: #63a4ff;
+          margin: 0 0 26px;
+          font-weight: 600;
+        }
+        h1 {
+          margin: 0;
+          font-size: 72px;
+          line-height: 1.18;
+          font-weight: 800;
+          letter-spacing: 2px;
+        }
+        .divider {
+          width: 72px;
+          height: 4px;
+          border-radius: 2px;
+          background: #63a4ff;
+          margin: 30px auto 0;
+        }
+        p.lead {
+          margin: 24px 0 0;
+          font-size: 30px;
+          line-height: 1.5;
+          color: #aeb7c2;
+        }
+      </style>
+
+      <div id="root" data-composition-id="s1-title" data-width="1920" data-height="1080">
+        <div class="wrap">
+          <div class="kicker" id="s1-kicker">VIBE 视频大赏</div>
+          <h1 id="s1-title">熵增是什么？</h1>
+          <div class="divider" id="s1-divider"></div>
+          <p class="lead" id="s1-lead">一切事物，终将走向混乱？</p>
+        </div>
+      </div>
+
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        tl.fromTo("#s1-kicker", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 0.4);
+        tl.fromTo("#s1-title", { y: 36, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }, 0.7);
+        tl.fromTo("#s1-divider", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power2.out" }, 1.0);
+        tl.fromTo("#s1-lead", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 1.2);
+        tl.to("#s1-kicker", { opacity: 0, duration: 0.5, ease: "power2.in" }, 3.3);
+        tl.to("#s1-title", { opacity: 0, duration: 0.5, ease: "power2.in" }, 3.3);
+        tl.to("#s1-lead", { opacity: 0, duration: 0.5, ease: "power2.in" }, 3.3);
+        window.__timelines["s1-title"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

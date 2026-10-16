@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          color: #f4f6f9;
+          font-family: system-ui, sans-serif;
+        }
+        .wrap {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0 96px;
+          box-sizing: border-box;
+        }
+        .left {
+          flex: 0 0 46%;
+        }
+        .right {
+          flex: 0 0 40%;
+          position: relative;
+          height: 60%;
+        }
+        .badge {
+          display: inline-block;
+          padding: 8px 22px;
+          border: 1px solid rgba(99, 164, 255, 0.5);
+          border-radius: 999px;
+          color: #63a4ff;
+          font-size: 20px;
+          letter-spacing: 3px;
+          margin-bottom: 26px;
+        }
+        h1 {
+          margin: 0;
+          font-size: 64px;
+          line-height: 1.18;
+          font-weight: 800;
+          letter-spacing: 2px;
+        }
+        .line2 {
+          color: #63a4ff;
+          margin-top: 10px;
+        }
+        p.lead {
+          margin: 24px 0 0;
+          font-size: 30px;
+          line-height: 1.5;
+          color: #aeb7c2;
+        }
+        .bars {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          align-items: flex-end;
+          justify-content: center;
+          gap: 26px;
+          height: 340px;
+        }
+        .bar {
+          width: 58px;
+          border-radius: 10px 10px 0 0;
+          background: linear-gradient(180deg, #63a4ff 0%, #2d6fd6 100%);
+        }
+      </style>
+
+      <div id="root" data-composition-id="s4-idea3" data-width="1920" data-height="1080">
+        <div class="wrap">
+          <div class="left">
+            <div class="badge" id="s4-badge">观点 03</div>
+            <h1 id="s4-l1">成长就是</h1>
+            <h1 class="line2" id="s4-l2">主动建立秩序</h1>
+            <p class="lead" id="s4-lead">每一次自律，都是一次逆熵做功</p>
+          </div>
+          <div class="right">
+            <div class="bars" id="s4-bars">
+              <div class="bar" style="height: 130px"></div>
+              <div class="bar" style="height: 190px"></div>
+              <div class="bar" style="height: 250px"></div>
+              <div class="bar" style="height: 310px"></div>
+              <div class="bar" style="height: 220px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        tl.fromTo("#s4-badge", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 0.5);
+        tl.fromTo("#s4-l1", { y: 32, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 0.8);
+        tl.fromTo("#s4-l2", { y: 32, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 1.1);
+        tl.fromTo("#s4-lead", { y: 22, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 1.4);
+        gsap.utils.toArray("#s4-bars .bar").forEach(function (bar, i) {
+          tl.fromTo(bar, { scaleY: 0 }, { scaleY: 1, transformOrigin: "50% 100%", duration: 0.8, ease: "power3.out" }, 1.7 + i * 0.15);
+        });
+        tl.to("#s4 .wrap", { opacity: 0, duration: 0.6, ease: "power2.in" }, 9.2);
+        window.__timelines["s4-idea3"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

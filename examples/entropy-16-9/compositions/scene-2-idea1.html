@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          color: #f4f6f9;
+          font-family: system-ui, sans-serif;
+        }
+        .wrap {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0 96px;
+          box-sizing: border-box;
+        }
+        .left {
+          flex: 0 0 46%;
+        }
+        .right {
+          flex: 0 0 40%;
+          position: relative;
+          height: 60%;
+        }
+        .badge {
+          display: inline-block;
+          padding: 8px 22px;
+          border: 1px solid rgba(99, 164, 255, 0.5);
+          border-radius: 999px;
+          color: #63a4ff;
+          font-size: 20px;
+          letter-spacing: 3px;
+          margin-bottom: 26px;
+        }
+        h1 {
+          margin: 0;
+          font-size: 64px;
+          line-height: 1.18;
+          font-weight: 800;
+          letter-spacing: 2px;
+        }
+        .line2 {
+          color: #63a4ff;
+          margin-top: 10px;
+        }
+        p.lead {
+          margin: 24px 0 0;
+          font-size: 30px;
+          line-height: 1.5;
+          color: #aeb7c2;
+        }
+        .grid {
+          position: absolute;
+          inset: 0;
+          display: grid;
+          grid-template-columns: repeat(3, 92px);
+          grid-template-rows: repeat(3, 92px);
+          gap: 26px;
+          place-content: center;
+        }
+        .cell {
+          width: 92px;
+          height: 92px;
+          border-radius: 14px;
+          background: rgba(99, 164, 255, 0.85);
+        }
+      </style>
+
+      <div id="root" data-composition-id="s2-idea1" data-width="1920" data-height="1080">
+        <div class="wrap">
+          <div class="left">
+            <div class="badge" id="s2-badge">观点 01</div>
+            <h1 id="s2-l1">封闭系统</h1>
+            <h1 class="line2" id="s2-l2">会越来越混乱</h1>
+            <p class="lead" id="s2-lead">熵只在孤立系统中持续增长</p>
+          </div>
+          <div class="right">
+            <div class="grid" id="s2-grid">
+              <div class="cell"></div>
+              <div class="cell" id="s2-drift-a"></div>
+              <div class="cell"></div>
+              <div class="cell"></div>
+              <div class="cell" id="s2-drift-b"></div>
+              <div class="cell"></div>
+              <div class="cell"></div>
+              <div class="cell"></div>
+              <div class="cell"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        tl.fromTo("#s2-badge", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 0.5);
+        tl.fromTo("#s2-l1", { y: 32, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 0.8);
+        tl.fromTo("#s2-l2", { y: 32, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 1.1);
+        tl.fromTo("#s2-lead", { y: 22, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 1.4);
+        tl.fromTo("#s2-grid", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 1.4);
+        tl.fromTo("#s2-drift-a", { x: 0, y: 0 }, { x: 132, y: 26, duration: 1.2, ease: "power2.inOut" }, 1.9);
+        tl.fromTo("#s2-drift-b", { x: 0, y: 0 }, { x: -128, y: 40, duration: 1.4, ease: "power2.inOut" }, 2.3);
+        tl.to("#s2 .wrap", { opacity: 0, duration: 0.6, ease: "power2.in" }, 7.2);
+        window.__timelines["s2-idea1"] = tl;
+      </script>
+    </template>
+  </body>
+</html>
