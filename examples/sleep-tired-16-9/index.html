@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>越睡越累？｜锚词模板示例（16:9）</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        background: #050a14;
+        font-family: system-ui, sans-serif;
+        overflow: hidden;
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+      #root [data-composition-src] {
+        position: absolute;
+        inset: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"
+         data-composition-id="main"
+         data-start="0"
+         data-width="1920"
+         data-height="1080"
+         data-duration="40">
+
+      <!-- 镜1：钩子段 0-16.4s（观众处境：睡了很久还是累） -->
+      <div id="s1"
+           data-composition-id="s1-hook"
+           data-composition-src="compositions/scene-1-hook.html"
+           data-start="0"
+           data-duration="16.4"
+           data-track-index="0"
+           data-width="1920"
+           data-height="1080"></div>
+
+      <!-- 镜2：重拍高潮 16.4-20s（锚词"累"爆发） -->
+      <div id="s2"
+           data-composition-id="s2-climax"
+           data-composition-src="compositions/scene-2-climax.html"
+           data-start="16.4"
+           data-duration="3.6"
+           data-track-index="1"
+           data-width="1920"
+           data-height="1080"></div>
+
+      <!-- 镜3：科普解释 20-32s（三个原因） -->
+      <div id="s3"
+           data-composition-id="s3-explain"
+           data-composition-src="compositions/scene-3-explain.html"
+           data-start="20"
+           data-duration="12"
+           data-track-index="2"
+           data-width="1920"
+           data-height="1080"></div>
+
+      <!-- 镜4：结尾反转 32-40s（锚词重新定义） -->
+      <div id="s4"
+           data-composition-id="s4-ending"
+           data-composition-src="compositions/scene-4-ending.html"
+           data-start="32"
+           data-duration="8"
+           data-track-index="3"
+           data-width="1920"
+           data-height="1080"></div>
+
+      <!-- 音频预留 -->
+      <!-- <audio id="voice" src="assets/voiceover.mp3" data-start="0" data-duration="40" data-volume="1" data-track-index="5"></audio> -->
+      <!-- <audio id="bgm" src="assets/bgm.mp3" data-start="0" data-duration="40" data-volume="0.2" data-track-index="6"></audio> -->
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
