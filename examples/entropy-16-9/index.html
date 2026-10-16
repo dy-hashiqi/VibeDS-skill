@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>熵增是什么？｜Vibe 视频大赏（16:9）</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        background: #0e1116;
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+      /* 子组合挂载槽：铺满整屏 */
+      #root [data-composition-src] {
+        position: absolute;
+        inset: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-width="1920" data-height="1080" data-duration="40">
+      <!-- 镜1：开场标题 0-4s -->
+      <div
+        id="s1"
+        data-composition-id="s1-title"
+        data-composition-src="compositions/scene-1-title.html"
+        data-start="0"
+        data-duration="4"
+        data-track-index="0"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <!-- 镜2：观点一 4-12s -->
+      <div
+        id="s2"
+        data-composition-id="s2-idea1"
+        data-composition-src="compositions/scene-2-idea1.html"
+        data-start="4"
+        data-duration="8"
+        data-track-index="1"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <!-- 镜3：观点二 12-22s -->
+      <div
+        id="s3"
+        data-composition-id="s3-idea2"
+        data-composition-src="compositions/scene-3-idea2.html"
+        data-start="12"
+        data-duration="10"
+        data-track-index="2"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <!-- 镜4：观点三 22-32s -->
+      <div
+        id="s4"
+        data-composition-id="s4-idea3"
+        data-composition-src="compositions/scene-4-idea3.html"
+        data-start="22"
+        data-duration="10"
+        data-track-index="3"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <!-- 镜5：结尾金句 32-40s -->
+      <div
+        id="s5"
+        data-composition-id="s5-closing"
+        data-composition-src="compositions/scene-5-closing.html"
+        data-start="32"
+        data-duration="8"
+        data-track-index="4"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <!-- 可选音频：文件放入 assets/ 后取消注释（每个 audio 必须有 id 和 src）
+      <audio id="voice" src="assets/voiceover.wav" data-start="0" data-duration="40" data-volume="1" data-track-index="5"></audio>
+      <audio id="bgm" src="assets/bgm.mp3" data-start="0" data-duration="40" data-volume="0.2" data-track-index="6"></audio>
+      -->
+    </div>
+    <script>
+      // 宿主时间线：子组合由框架独立驱动，这里注册一条空时间线即可
+      const tl = gsap.timeline({ paused: true });
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
